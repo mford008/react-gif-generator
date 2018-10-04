@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GifTile from '../GifTile/GifTile.js';
 
 const TileContainer = (props) => {
