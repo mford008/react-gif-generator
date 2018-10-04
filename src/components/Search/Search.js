@@ -11,8 +11,6 @@ class Search extends Component {
     this.setState({
       term: value,
     });
-    console.log(this.state.value);
-    console.log(this.state.term);
   }
   handleSubmit = () => {
     console.log('hello', this.state.term);
