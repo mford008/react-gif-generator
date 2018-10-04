@@ -6,11 +6,11 @@ class Search extends Component {
   state = {
     term: ''
   }
-  handleInputChange = (ev) => {
-    let value = ev.target.value;
+  handleInputChange = (term) => {
     this.setState({
-      term: value,
+      term,
     });
+    this.props.onTermChange(term);
   }
   handleSubmit = () => {
     console.log('hello', this.state.term);
@@ -25,7 +25,7 @@ class Search extends Component {
     return (
       <div className="Search">
         <input placeholder="Enter your Search Term here"
-               onChange={this.handleInputChange} />
+               onChange={event => this.handleInputChange(event.target.value)} />
         <Button onClick={this.handleSubmit}>Search</Button>
       </div>
     );

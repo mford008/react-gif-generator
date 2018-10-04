@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import Button from '../Button/Button.js';
+import React from 'react';
 import './GifTile.css';
 
 const GifTile = (image) => {
   return (
     <li className='gif-tile'>
-      <img src={image.gif.url} />
+      <img src={image.gif.images.downsized.url} alt={image.gif.title} />
     </li>
   )
 };
