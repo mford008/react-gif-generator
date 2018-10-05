@@ -9,24 +9,33 @@ class App extends Component {
   state = {
     trending: true,
     gifs: [],
+    searched_gifs: [],
+    search_term: ''
   }
 
 
   componentDidMount() {
       axios.get('https://api.giphy.com/v1/gifs/trending?api_key=***REMOVED***')
       .then(res => {
-        const gifs = res.data;
-        this.setState({ gifs: res.data.data })
+        const gifs = res.data.data;
+        this.setState({ gifs: gifs })
       });
   }
 
+  handleInputChange = (ev) => {
+    let value = ev.target.value;
+    this.setState({search_term: value});
+    console.log(this.state.search_term);
+  }
+
   onSubmit = () => {
-    console.log(this.state.term);
+    console.log(this.state.search_term);
     axios.get('https://api.giphy.com/v1/gifs/search?q=' +
-              this.state.term + '&api_key=***REMOVED***')
+              this.state.search_term + '&api_key=***REMOVED***')
               .then(res => {
-                  const gifs = res.data;
-                  this.setState({ gifs: res.data.data });
+                  const searched_gifs = res.data.data;
+                  console.log(searched_gifs);
+                  this.setState({ searched_gifs: searched_gifs });
                   });
   }
   render() {
@@ -34,7 +43,7 @@ class App extends Component {
       <div className="App">
         <h1>Shift Gif Generator</h1>
         <h2>Search for a Gif:</h2>
-        <Search onClickButton={this.onSubmit}/>
+        <Search handleInputChange={this.handleInputChange} onClickButton={this.onSubmit}/>
         <GifContainer gifs={this.state.gifs} />
       </div>
     );
