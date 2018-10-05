@@ -4,7 +4,8 @@ import Gif from '../Gif/Gif.js';
 const SearchGifContainer = (props) => {
     const searched_gifs = props.searched_gifs.map((image) => {
         return <Gif key={image.id}
-                        gif={image} />
+                    gif={image}
+                    onGifSelect={props.onGifSelect} />
     });
 
     return (
