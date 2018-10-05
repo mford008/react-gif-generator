@@ -23,16 +23,15 @@ class App extends Component {
     const client = SlackWebhookClient.connect(
       'https://hooks.slack.com/services/***REMOVED***'
     );
+    const data = {'text': 'hello'};
     client.sendAttachment({
-      fields: [
-    {
-      title: gif.title,
-      url: gif.images.downsized.url,
-    },
-  ],
+        fields: [
+      {
+        title: gif.title,
+        url: gif.images.downsized.url,
+      },
+    ],
     })
-    console.log(gif.title);
-
   }
   openModal(gif) {
     this.setState({
@@ -66,6 +65,7 @@ class App extends Component {
               .then(res => {
                   const searched_gifs = res.data.data;
                   this.setState({ searched_gifs: searched_gifs });
+                  console.log(this.state.searched_gifs);
                   });
   }
   render() {
