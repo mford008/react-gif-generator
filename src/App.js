@@ -44,6 +44,7 @@ class App extends Component {
         <h1>Shift Gif Generator</h1>
         <h2>Search for a Gif:</h2>
         <Search handleInputChange={this.handleInputChange} onClickButton={this.onSubmit}/>
+        <SearchGifContainer searched_gifs={this.state.searched_gifs} />
         <GifContainer gifs={this.state.gifs} />
       </div>
     );
