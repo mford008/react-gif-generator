@@ -15,7 +15,6 @@ const GifModal = (props) => {
         <p>Title: { props.selection.title }</p>
         <p>User: {props.selection.username}</p>
         <p>Rating: { props.selection.rating }</p>
-
         <button onClick={() => props.onRequestClose()}>close</button>
       </div>
     </Modal>
