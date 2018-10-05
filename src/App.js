@@ -6,6 +6,8 @@ import Search from './components/Search/Search.js';
 import './App.css';
 import axios from 'axios';
 import SlackWebhookClient from 'messaging-api-slack';
+const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`
+const WEBHOOK_URL = `${process.env.REACT_APP_WEBHOOK_URL}`
 
 class App extends Component {
   state = {
@@ -20,18 +22,21 @@ class App extends Component {
     this.setState({
       selection: gif,
     });
-    const client = SlackWebhookClient.connect(
-      'https://hooks.slack.com/services/***REMOVED***'
-    );
-    const data = {'text': 'hello'};
-    client.sendAttachment({
-        fields: [
-      {
-        title: gif.title,
-        url: gif.images.downsized.url,
-      },
-    ],
-    })
+    // const client = SlackWebhookClient.connect(
+    //   'https://hooks.slack.com/services/' + WEBHOOK_URL
+    // );
+    // const data = {'text': 'hello'};
+    // client.sendAttachment({
+    //   headers: {
+    //     'Content-type': 'application/json'
+    //   }
+    //   attachments: [
+    //   {
+    //     title: gif.title,
+    //     url: gif.images.downsized.url,
+    //   },
+    // ],
+    // })
   }
   openModal(gif) {
     this.setState({
@@ -47,7 +52,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-      axios.get('https://api.giphy.com/v1/gifs/trending?api_key=***REMOVED***')
+      axios.get('https://api.giphy.com/v1/gifs/trending?api_key=' + API_KEY)
       .then(res => {
         const gifs = res.data.data;
         this.setState({ gifs: gifs })
@@ -61,7 +66,7 @@ class App extends Component {
 
   onSubmit = () => {
     axios.get('https://api.giphy.com/v1/gifs/search?q=' +
-              this.state.search_term + '&api_key=***REMOVED***')
+              this.state.search_term + '&api_key=' + API_KEY)
               .then(res => {
                   const searched_gifs = res.data.data;
                   this.setState({ searched_gifs: searched_gifs });
