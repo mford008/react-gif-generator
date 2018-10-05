@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GifContainer from './components/GifContainer/GifContainer.js';
+import Search from './components/Search/Search.js';
 import './App.css';
 import axios from 'axios';
 
@@ -22,6 +23,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Shift Gif Generator</h1>
+        <h2>Search for a Gif:</h2>
+        <Search />
         <h2>Trending:</h2>
         <GifContainer gifs={this.state.gifs} />
       </div>
