@@ -14,6 +14,12 @@ class App extends Component {
     selection: null,
     modalIsOpen: false,
   }
+  shareToSlack(gif) {
+    this.setState({
+      selection: gif,
+    });
+    console.log(gif);
+  }
   openModal(gif) {
     this.setState({
       selection: gif,
@@ -58,10 +64,12 @@ class App extends Component {
         <h2>Search for a Gif:</h2>
         <Search handleInputChange={this.handleInputChange} onClickButton={this.onSubmit}/>
         <SearchGifContainer searched_gifs={this.state.searched_gifs}
-                            onGifSelect={selection => this.openModal(selection)}/>
+                            onGifSelect={selection => this.openModal(selection)}
+                            onSlackButtonClick={selection => this.shareToSlack(selection)}/>
         <h2>Trending:</h2>
         <GifContainer gifs={this.state.gifs}
-                      onGifSelect={selection => this.openModal(selection)}/>
+                      onGifSelect={selection => this.openModal(selection)}
+                      onSlackButtonClick={selection => this.shareToSlack(selection)}/>
         <GifModal modalIsOpen={this.state.modalIsOpen}
                   selection={this.state.selection}
                   onRequestClose={ () => this.closeModal() } />

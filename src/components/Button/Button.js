@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
 class Button extends Component {
-  //   if (this.state.isPurple) {
-  //     this.setState({isPurple:false})
-  //   }
-  //   else (this.state.isPurple) {
-  //     this.setState({isPurple:true})
-  //   }
-
   render() {
     return(
       <div>
