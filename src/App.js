@@ -22,10 +22,13 @@ class App extends Component {
     this.setState({
       selection: gif,
     });
+    // Current error: default.a.connect is not a function
+    // TODO: further research on error
     const client = SlackWebhookClient.connect(
       'https://hooks.slack.com/services/' + WEBHOOK_URL
     );
-    const data = {'url': this.state.selection.data.url};
+    // Use img of gif to be sent as attachment
+    const data = {'url': this.state.selection.data.images.downsized.url};
     client.sendAttachment({
       headers: {
         'Content-type': 'application/json'
@@ -47,7 +50,7 @@ class App extends Component {
       modalIsOpen: false,
     });
   }
-
+  // Load trending gifs
   componentDidMount() {
       axios.get('https://api.giphy.com/v1/gifs/trending?api_key=' + API_KEY)
       .then(res => {
@@ -60,7 +63,7 @@ class App extends Component {
     let value = ev.target.value;
     this.setState({search_term: value});
   }
-
+  // Load gifs for search term
   onSubmit = () => {
     axios.get('https://api.giphy.com/v1/gifs/search?q=' +
               this.state.search_term + '&api_key=' + API_KEY)
