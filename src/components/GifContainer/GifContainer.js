@@ -5,7 +5,8 @@ const GifContainer = (props) => {
     const gifs = props.gifs.map((image) => {
         return <Gif key={image.id}
                     gif={image}
-                    onGifSelect={props.onGifSelect} />
+                    onGifSelect={props.onGifSelect}
+                    onSlackButtonClick={props.onSlackButtonClick} />
     });
 
     return (
