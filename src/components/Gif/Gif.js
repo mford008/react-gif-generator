@@ -2,11 +2,11 @@ import React from 'react';
 import Button from '../Button/Button.js';
 import './Gif.css';
 
-const Gif = (image) => {
+const Gif = ({gif, onGifSelect}) => {
   return (
     <li className='gif-tile'>
-      <img className='gif-frame' src={image.gif.images.downsized.url} alt={image.gif.title} />
-      <Button>Details</Button>
+      <img className='gif-frame' src={gif.images.downsized.url} alt={gif.title} />
+      <Button onClick={() => onGifSelect(gif)}>Details</Button>
       <Button>Share on Slack</Button>
     </li>
   )
