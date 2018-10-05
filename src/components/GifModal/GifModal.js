@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Modal from 'react-modal';
-// import './GifModal.css';
 
 const GifModal = (props) => {
   if (!props.selection) {
@@ -11,7 +10,7 @@ const GifModal = (props) => {
       isOpen={ props.modalIsOpen }
       onRequestClose={ () => props.onRequestClose() }>
       <div className='gif-modal'>
-        <img src={ props.selection.images.original.url } />
+        <img src={ props.selection.images.original.url } alt={props.selection.title}/>
         <p>Source: <a href={ props.selection.source }>{ props.selection.source }</a></p>
         <p>Title: { props.selection.title }</p>
         <p>User: {props.selection.username}</p>

@@ -22,21 +22,18 @@ class App extends Component {
     this.setState({
       selection: gif,
     });
-    // const client = SlackWebhookClient.connect(
-    //   'https://hooks.slack.com/services/' + WEBHOOK_URL
-    // );
-    // const data = {'text': 'hello'};
-    // client.sendAttachment({
-    //   headers: {
-    //     'Content-type': 'application/json'
-    //   }
-    //   attachments: [
-    //   {
-    //     title: gif.title,
-    //     url: gif.images.downsized.url,
-    //   },
-    // ],
-    // })
+    const client = SlackWebhookClient.connect(
+      'https://hooks.slack.com/services/' + WEBHOOK_URL
+    );
+    const data = {'url': this.state.selection.data.url};
+    client.sendAttachment({
+      headers: {
+        'Content-type': 'application/json'
+      },
+      attachments: [
+      data,
+    ],
+    })
   }
   openModal(gif) {
     this.setState({
