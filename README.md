@@ -1,2 +1,4 @@
 # React Gif Generator
-This application brings up trending gifs from Giphy and allows users to search for gifs. Users can also see more details about a gif by selecting the "Details" button. The ability to post a selected gif to Slack is in progress. To run locally, run "npm install" and "npm run start."
+This application brings up trending gifs from Giphy and allows users to search for gifs. Users can also see more details about a gif by selecting the "Details" button. The ability to post a selected gif to Slack is in progress. 
+
+<a href="http://recordit.co/fViL4ec2Hw/gif/notify"><img src="http://recordit.co/fViL4ec2Hw/gif/notify"></a>
