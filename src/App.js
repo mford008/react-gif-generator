@@ -22,9 +22,14 @@ class App extends Component {
     this.setState({
       selection: gif,
     });
+    let data = {text: 'hi'}
+
     axios.post('https://hooks.slack.com/services/' + WEBHOOK_URL, {
-        text: 'hello'
-      })
+                // headers: {
+                //     'Access-Control-Allow-Headers':
+                // },
+                data
+            })
       .then(function (response) {
         console.log(response);
       })
