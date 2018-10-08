@@ -5,7 +5,6 @@ import GifModal from './components/GifModal/GifModal.js';
 import Search from './components/Search/Search.js';
 import './App.css';
 import axios from 'axios';
-// import SlackWebhookClient from 'messaging-api-slack';
 const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`
 const WEBHOOK_URL = `${process.env.REACT_APP_WEBHOOK_URL}`
 
@@ -22,16 +21,15 @@ class App extends Component {
     this.setState({
       selection: gif,
     });
-    let data = {text: 'hi'}
-
-    axios.post('https://hooks.slack.com/services/' + WEBHOOK_URL, {
-                // headers: {
-                //     'Access-Control-Allow-Headers':
-                // },
-                data
-            })
-      .then(function (response) {
-        console.log(response);
+    let data = this.state.selection;
+    axios.post('https://hooks.slack.com/services/' + WEBHOOK_URL,
+                JSON.stringify(data),
+                {headers: {
+                            'Access-Control-Allow-Origin': '*'}
+                          }
+                        )
+      .then(function (res) {
+        console.log(res);
       })
       .catch(function (error) {
         console.log(error);
@@ -55,7 +53,10 @@ class App extends Component {
         .then(res => {
           const gifs = res.data.data;
           this.setState({ gifs: gifs });
-      });
+      })
+      .catch(err => {
+        return('error', err);
+      })
   }
 
   handleInputChange = (ev) => {
@@ -69,8 +70,10 @@ class App extends Component {
             .then(res => {
                 const searched_gifs = res.data.data;
                 this.setState({ searched_gifs: searched_gifs });
-                console.log(this.state.searched_gifs);
-                });
+              })
+              .catch(err => {
+                return('error', err);
+              })
   }
   render() {
     return (

@@ -82,7 +82,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-<<<<<<< HEAD
-test.txt
-=======
->>>>>>> fce4be67c4b2c01ceef85621268ce0c10ab903b9
