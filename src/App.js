@@ -5,6 +5,10 @@ import GifModal from './components/GifModal/GifModal.js';
 import Search from './components/Search/Search.js';
 import './App.css';
 import axios from 'axios';
+<<<<<<< HEAD
+=======
+// import SlackWebhookClient from 'messaging-api-slack';
+>>>>>>> 84ce96cca66c450ec1ce5f667d0e502b4cef19ff
 const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`
 const WEBHOOK_URL = `${process.env.REACT_APP_WEBHOOK_URL}`
 
@@ -53,10 +57,14 @@ class App extends Component {
         .then(res => {
           const gifs = res.data.data;
           this.setState({ gifs: gifs });
+<<<<<<< HEAD
       })
       .catch(err => {
         return('error', err);
       })
+=======
+      });
+>>>>>>> 84ce96cca66c450ec1ce5f667d0e502b4cef19ff
   }
 
   handleInputChange = (ev) => {
@@ -70,10 +78,15 @@ class App extends Component {
             .then(res => {
                 const searched_gifs = res.data.data;
                 this.setState({ searched_gifs: searched_gifs });
+<<<<<<< HEAD
               })
               .catch(err => {
                 return('error', err);
               })
+=======
+                console.log(this.state.searched_gifs);
+                });
+>>>>>>> 84ce96cca66c450ec1ce5f667d0e502b4cef19ff
   }
   render() {
     return (
