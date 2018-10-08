@@ -16,7 +16,9 @@ class App extends Component {
     selection: null,
     modalIsOpen: false,
   }
-
+  // TODO: research and implement further solutions for
+  // "Access-Control-Allow-Origin is not allowed by
+  // Access-Control-Allow-Headers in preflight response."
   shareToSlack(gif) {
     this.setState({
       selection: gif,
