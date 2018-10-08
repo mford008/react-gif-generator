@@ -1,5 +1,6 @@
 import React from 'react';
 import Gif from '../Gif/Gif.js';
+import '../GifContainer/GifContainer.css';
 
 const GifContainer = (props) => {
     const gifs = props.gifs.map((image) => {

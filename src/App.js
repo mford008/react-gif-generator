@@ -5,7 +5,7 @@ import GifModal from './components/GifModal/GifModal.js';
 import Search from './components/Search/Search.js';
 import './App.css';
 import axios from 'axios';
-import SlackWebhookClient from 'messaging-api-slack';
+// import SlackWebhookClient from 'messaging-api-slack';
 const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`
 const WEBHOOK_URL = `${process.env.REACT_APP_WEBHOOK_URL}`
 
@@ -22,21 +22,15 @@ class App extends Component {
     this.setState({
       selection: gif,
     });
-    // Current error: default.a.connect is not a function
-    // TODO: further research on error
-    const client = SlackWebhookClient.connect(
-      'https://hooks.slack.com/services/' + WEBHOOK_URL
-    );
-    // Use img of gif to be sent as attachment
-    const data = {'url': this.state.selection.data.images.downsized.url};
-    client.sendAttachment({
-      headers: {
-        'Content-type': 'application/json'
-      },
-      attachments: [
-      data,
-    ],
-    })
+    axios.post('https://hooks.slack.com/services/' + WEBHOOK_URL, {
+        text: 'hello'
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   openModal(gif) {
     this.setState({
@@ -53,9 +47,9 @@ class App extends Component {
   // Load trending gifs
   componentDidMount() {
       axios.get('https://api.giphy.com/v1/gifs/trending?api_key=' + API_KEY)
-      .then(res => {
-        const gifs = res.data.data;
-        this.setState({ gifs: gifs })
+        .then(res => {
+          const gifs = res.data.data;
+          this.setState({ gifs: gifs });
       });
   }
 
@@ -66,12 +60,12 @@ class App extends Component {
   // Load gifs for search term
   onSubmit = () => {
     axios.get('https://api.giphy.com/v1/gifs/search?q=' +
-              this.state.search_term + '&api_key=' + API_KEY)
-              .then(res => {
-                  const searched_gifs = res.data.data;
-                  this.setState({ searched_gifs: searched_gifs });
-                  console.log(this.state.searched_gifs);
-                  });
+            this.state.search_term + '&api_key=' + API_KEY)
+            .then(res => {
+                const searched_gifs = res.data.data;
+                this.setState({ searched_gifs: searched_gifs });
+                console.log(this.state.searched_gifs);
+                });
   }
   render() {
     return (
