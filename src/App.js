@@ -3,6 +3,7 @@ import GifContainer from './components/GifContainer/GifContainer.js';
 import SearchGifContainer from './components/SearchGifContainer/SearchGifContainer.js';
 import GifModal from './components/GifModal/GifModal.js';
 import Search from './components/Search/Search.js';
+import {Grid, Row, Col} from 'react-bootstrap';
 import './App.css';
 import axios from 'axios';
 const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`
@@ -80,19 +81,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Gif Generator</h1>
-        <h2>Search for a Gif:</h2>
-        <Search handleInputChange={this.handleInputChange} onClickButton={this.onSubmit}/>
-        <SearchGifContainer searched_gifs={this.state.searched_gifs}
-                            onGifSelect={selection => this.openModal(selection)}
-                            onSlackButtonClick={selection => this.shareToSlack(selection)}/>
-        <h2>Trending:</h2>
-        <GifContainer gifs={this.state.gifs}
-                      onGifSelect={selection => this.openModal(selection)}
-                      onSlackButtonClick={selection => this.shareToSlack(selection)}/>
-        <GifModal modalIsOpen={this.state.modalIsOpen}
-                  selection={this.state.selection}
-                  onRequestClose={ () => this.closeModal() } />
+        <Grid>
+        <Row>
+          <Col>
+            <h1>Gif Generator</h1>
+          </Col>
+          </Row>
+          <h2>Search for a Gif:</h2>
+          <Search handleInputChange={this.handleInputChange} onClickButton={this.onSubmit}/>
+          <SearchGifContainer searched_gifs={this.state.searched_gifs}
+                              onGifSelect={selection => this.openModal(selection)}
+                              onSlackButtonClick={selection => this.shareToSlack(selection)}/>
+          <h2>Trending:</h2>
+          <GifContainer gifs={this.state.gifs}
+                        onGifSelect={selection => this.openModal(selection)}
+                        onSlackButtonClick={selection => this.shareToSlack(selection)}/>
+          <GifModal modalIsOpen={this.state.modalIsOpen}
+                    selection={this.state.selection}
+                    onRequestClose={ () => this.closeModal() } />
+        </Grid>
       </div>
     );
   }
